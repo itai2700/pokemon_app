@@ -4,9 +4,14 @@ import pokeball from '../../Images/pokeball.png';
 import { connect } from 'react-redux';
 
 class Home extends Component {
-//   componentDidMount() {
-//       fetch('')
-//   }
+  componentDidMount() {
+    const pokeName = "pikachu";
+    let intialURL = `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20`;
+    fetch( intialURL )
+      .then( (res) => res.json() )
+      .then((data) => console.log(data))
+      .catch(err => console.log(err))
+  }
 
   render() {
     const { posts } = this.props;
@@ -43,4 +48,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
